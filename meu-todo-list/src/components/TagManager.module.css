@@ -1,0 +1,131 @@
+/* src/components/TagManager.module.css */
+
+/* Pega emprestado os estilos do TodoInput para o Modal */
+.modalOverlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: var(--color-card-bg);
+  padding: 24px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px var(--color-shadow);
+  transition: background-color 0.2s;
+}
+
+.modalContent h2 {
+  margin-bottom: 20px;
+  color: var(--color-text-primary);
+}
+
+/* Formulário de Adicionar */
+.addForm {
+  margin-bottom: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.formGroup label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+.inputWrapper {
+  display: flex;
+  gap: 8px;
+}
+.inputWrapper input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+.inputWrapper button {
+  flex-shrink: 0;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+.errorText {
+  color: var(--color-icon-delete);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Lista de Tags */
+.tagList {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 12px;
+  background-color: var(--color-background);
+}
+.tagList h3 {
+  font-size: 16px;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tagItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 16px;
+}
+.tagItem:not(:last-child) {
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.tagItem span {
+  color: var(--color-text-primary);
+}
+.tagItem button {
+  background: none;
+  border: none;
+  color: var(--color-icon-delete);
+  opacity: 0.7;
+  font-size: 14px;
+}
+.tagItem button:hover {
+  opacity: 1;
+}
+
+/* Botão de Fechar */
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+.buttonSecondary {
+  background-color: var(--color-secondary-btn);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.buttonSecondary:hover {
+  background-color: var(--color-secondary-btn-hover);
+}

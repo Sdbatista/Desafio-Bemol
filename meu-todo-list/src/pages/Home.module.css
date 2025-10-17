@@ -1,0 +1,140 @@
+/* src/pages/Home.module.css */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  background-color: var(--color-header-bg);
+  padding: 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: space-between; /* Garante que o botão de tema fique na ponta */
+  transition: background-color 0.2s;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- ESTILO ATUALIZADO PARA O ÍCONE --- */
+.logo {
+  width: 80px;
+  height: 80px;
+  color: var(--color-primary); /* Usa nossa cor de tema */
+  opacity: 0.8;
+  transition: color 0.2s;
+}
+
+/* Bônus: Animação de giro */
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.logo {
+  animation: logo-spin 20s linear infinite;
+}
+/* --- FIM DA ATUALIZAÇÃO --- */
+
+.logoContainer span {
+  font-weight: bold;
+  color: var(--color-text-secondary);
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.titleContainer h1 {
+  font-size: 32px;
+  color: var(--color-text-primary);
+}
+
+.tasksSection {
+  margin-top: 32px;
+}
+
+.tasksHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tasksHeader h2 {
+  font-size: 24px;
+  color: var(--color-text-primary);
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.headerActions {
+  margin-left: auto; /* Empurra o botão de tema para a direita */
+}
+.header {
+  /* Modifique o .header existente para isto */
+  background-color: var(--color-header-bg);
+  padding: 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  /* Garante que o botão fique na ponta */
+  justify-content: space-between; 
+}
+
+.headerActions {
+  /* Um container para o botão de tema */
+  margin-left: auto; /* Empurra para a direita (alternativa ao space-between) */
+}
+
+/* Ajuste o .titleContainer para não crescer demais */
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1; /* Permite que ele cresça */
+  max-width: 600px; /* Mas não infinitamente */
+}
+
+/* ... (todos os estilos existentes) ... */
+
+.headerActions {
+  margin-left: auto;
+  display: flex; /* Alinha os botões */
+  align-items: center;
+  gap: 12px; /* Espaço entre os botões */
+}
+
+/* Estilo para o novo botão de Tags */
+.tagButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-secondary-btn);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tagButton:hover {
+  background-color: var(--color-secondary-btn-hover);
+  box-shadow: 0 2px 4px var(--color-shadow);
+}

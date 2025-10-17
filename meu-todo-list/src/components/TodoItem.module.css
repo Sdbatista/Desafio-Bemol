@@ -1,0 +1,126 @@
+/* src/components/TodoItem.module.css */
+
+.card {
+  background: var(--color-card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px var(--color-shadow);
+  transform: translateY(-2px);
+}
+
+.completed {
+  opacity: 0.6;
+}
+.completed .title,
+.completed .description {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}
+
+.cardContent {
+  flex-grow: 1; 
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.description {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  word-break: break-word; 
+}
+
+.cardActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.iconButton:hover {
+  background-color: var(--color-secondary-btn-hover);
+}
+
+/* Cores dos ícones */
+.editBtn { color: var(--color-icon-edit); }
+.toggleBtn { color: var(--color-icon-toggle); }
+.deleteBtn { color: var(--color-icon-delete); }
+.cancelBtn { color: var(--color-icon-delete); } /* Reusa o vermelho */
+.saveBtn { color: var(--color-icon-save); }
+
+/* --- NOVOS ESTILOS PARA EDIÇÃO --- */
+
+.editInput {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px dashed var(--color-border);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 16px;
+  /* Importante para o Dark Mode */
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.editInput:focus {
+  outline: none;
+  border-style: solid;
+  border-color: var(--color-primary);
+}
+/* --- NOVO ESTILO (DATA DE VENCIMENTO) --- */
+.dueDateContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Espaço entre o ícone e o texto */
+  font-size: 13px;
+  color: var(--color-text-secondary); /* Cor de texto secundária */
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding-top: 8px;
+  /* Uma linha pontilhada para separar do conteúdo */
+  border-top: 1px dashed var(--color-border);
+}
+
+.dueDateContainer svg {
+  font-size: 12px; /* Ícone pequeno */
+}

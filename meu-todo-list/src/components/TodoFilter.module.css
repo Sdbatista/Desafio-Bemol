@@ -1,0 +1,43 @@
+/* src/components/TodoFilter.module.css */
+
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: var(--color-filter-bg);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px var(--color-shadow);
+  flex-wrap: wrap;
+  gap: 16px;
+  transition: background-color 0.2s;
+}
+
+.searchInput {
+  flex-grow: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  /* Importante para o Dark Mode */
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.selectors {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.selectors select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-secondary-btn);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}

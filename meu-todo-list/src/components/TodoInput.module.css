@@ -1,0 +1,171 @@
+/* src/components/TodoInput.module.css */
+
+.createButton {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.createButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: var(--color-card-bg);
+  padding: 24px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px var(--color-shadow);
+  transition: background-color 0.2s;
+}
+
+.modalContent h2 {
+  margin-bottom: 20px;
+  color: var(--color-text-primary);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+/* Estilo específico para input de data no dark mode */
+.formGroup input[type="date"] {
+  color-scheme: var(--color-scheme, light);
+}
+
+.formGroup textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+.formRow .formGroup {
+  flex: 1;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.formActions button {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+.buttonPrimary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.buttonSecondary {
+  background-color: var(--color-secondary-btn);
+  color: var(--color-text-primary);
+}
+.buttonSecondary:hover {
+  background-color: var(--color-secondary-btn-hover);
+}
+
+/* --- NOVO ESTILO DE ERRO --- */
+.errorText {
+  color: var(--color-icon-delete); /* Vermelho */
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+/* ... (Mantenha todos os estilos existentes acima) ... */
+
+/* --- NOVOS ESTILOS PARA O TAG/PILL INPUT --- */
+
+.tagPillContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  /* Se houver tags, adiciona um espaço abaixo */
+  margin-bottom: 8px; 
+}
+
+.tagPill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  padding: 4px 8px;
+  border-radius: 12px; /* Deixa bem arredondado */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tagPill button {
+  background: none;
+  border: none;
+  color: var(--color-text-on-primary);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 12px;
+}
+.tagPill button:hover {
+  opacity: 1;
+}
+
+/* Ajusta o input de data para não ficar estranho no Dark Mode */
+.formGroup input[type="date"] {
+  /* No index.css, defina [data-theme="dark"] { --color-scheme: dark; } */
+  color-scheme: var(--color-scheme, light); 
+}

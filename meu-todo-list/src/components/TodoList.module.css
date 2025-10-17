@@ -1,0 +1,39 @@
+/* src/components/TodoList.module.css */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: var(--color-secondary-btn); /* Usa um fundo levemente diferente */
+  border: 2px dashed var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  min-height: 200px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.emptyState h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
