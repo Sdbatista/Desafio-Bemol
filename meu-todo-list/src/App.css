@@ -1,0 +1,9 @@
+/* src/App.css */
+/* (Este arquivo estava vazio, vamos usá-lo) */
+
+#root {
+  /* Garante que o app ocupe pelo menos 100% da altura da tela */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,23 +1,23 @@
-// src/pages/Home.tsx
+// src/pages/Home.tsx (Traduzido e limpo)
 
-import { useState } from 'react'; // 1. IMPORTAR useState
+import { useState } from 'react';
 import { useTodos } from '../hooks/useTodos';
 import { TodoInput } from '../components/TodoInput';
 import { TodoList } from '../components/TodoList';
 import { TodoFilter } from '../components/TodoFilter';
 import { ThemeToggle } from '../components/ThemeToggle';
-import { TagManager } from '../components/TagManager'; // 2. IMPORTAR O NOVO MODAL
-import { FaReact, FaTags } from 'react-icons/fa'; // 3. IMPORTAR ÍCONE DE TAG
+import { TagManager } from '../components/TagManager';
+import { FaReact, FaTags } from 'react-icons/fa';
 import styles from './Home.module.css';
 
 export function Home() {
-  const [isTagModalOpen, setIsTagModalOpen] = useState(false); // 4. ESTADO DO NOVO MODAL
+  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
 
   const {
     tasks, addTask, removeTask, toggleTaskStatus, updateTask,
     filters, updateFilter, allTags,
     sortCriteria, updateSort,
-    definedTags, addDefinedTag, removeDefinedTag, // 5. PEGAR AS NOVAS FUNÇÕES
+    definedTags, addDefinedTag, removeDefinedTag,
   } = useTodos();
 
   return (
@@ -25,23 +25,21 @@ export function Home() {
       <header className={styles.header}>
         <div className={styles.logoContainer}>
           <FaReact className={styles.logo} />
-          <span>PART 1</span>
+          {/* "PART 1" FOI REMOVIDO DAQUI */}
         </div>
         
         <div className={styles.titleContainer}>
           <h1>Todo List</h1>
-          {/* 6. PASSAR 'definedTags' PARA O INPUT */}
           <TodoInput onAddTask={addTask} definedTags={definedTags} />
         </div>
         
         <div className={styles.headerActions}>
-          {/* 7. NOVO BOTÃO DE GERENCIAR TAGS */}
           <button 
             className={styles.tagButton} 
             onClick={() => setIsTagModalOpen(true)}
-            aria-label="Gerenciar tags"
+            aria-label="Manage Tags"
           >
-            <FaTags /> Modificar Tags
+            <FaTags /> <span>Manage Tags</span>
           </button>
           <ThemeToggle />
         </div>
@@ -66,7 +64,6 @@ export function Home() {
         />
       </section>
 
-      {/* 8. RENDERIZAR O NOVO MODAL */}
       <TagManager 
         isOpen={isTagModalOpen}
         onClose={() => setIsTagModalOpen(false)}

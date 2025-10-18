@@ -1,10 +1,13 @@
-/* src/pages/Home.module.css */
+/* src/pages/Home.module.css (Com correção mobile) */
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
+  flex-grow: 1; /* Faz o container crescer para ocupar o min-height do App.css */
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -14,7 +17,7 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  justify-content: space-between; /* Garante que o botão de tema fique na ponta */
+  justify-content: space-between;
   transition: background-color 0.2s;
 }
 
@@ -25,28 +28,19 @@
   gap: 8px;
 }
 
-/* --- ESTILO ATUALIZADO PARA O ÍCONE --- */
 .logo {
   width: 80px;
   height: 80px;
-  color: var(--color-primary); /* Usa nossa cor de tema */
+  color: var(--color-primary);
   opacity: 0.8;
   transition: color 0.2s;
 }
-
-/* Bônus: Animação de giro */
 @keyframes logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 .logo {
   animation: logo-spin 20s linear infinite;
-}
-/* --- FIM DA ATUALIZAÇÃO --- */
-
-.logoContainer span {
-  font-weight: bold;
-  color: var(--color-text-secondary);
 }
 
 .titleContainer {
@@ -64,6 +58,9 @@
 
 .tasksSection {
   margin-top: 32px;
+  flex-grow: 1; /* Faz a seção de tarefas crescer */
+  display: flex;
+  flex-direction: column;
 }
 
 .tasksHeader {
@@ -82,44 +79,12 @@
 }
 
 .headerActions {
-  margin-left: auto; /* Empurra o botão de tema para a direita */
-}
-.header {
-  /* Modifique o .header existente para isto */
-  background-color: var(--color-header-bg);
-  padding: 32px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  /* Garante que o botão fique na ponta */
-  justify-content: space-between; 
-}
-
-.headerActions {
-  /* Um container para o botão de tema */
-  margin-left: auto; /* Empurra para a direita (alternativa ao space-between) */
-}
-
-/* Ajuste o .titleContainer para não crescer demais */
-.titleContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex-grow: 1; /* Permite que ele cresça */
-  max-width: 600px; /* Mas não infinitamente */
-}
-
-/* ... (todos os estilos existentes) ... */
-
-.headerActions {
   margin-left: auto;
-  display: flex; /* Alinha os botões */
+  display: flex;
   align-items: center;
-  gap: 12px; /* Espaço entre os botões */
+  gap: 12px;
 }
 
-/* Estilo para o novo botão de Tags */
 .tagButton {
   display: flex;
   align-items: center;
@@ -137,4 +102,49 @@
 .tagButton:hover {
   background-color: var(--color-secondary-btn-hover);
   box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+
+/* --- CORREÇÃO RESPONSIVA (PONTO 8) --- */
+
+@media (max-width: 768px) {
+  .header {
+    /* Muda para coluna */
+    flex-direction: column;
+    align-items: stretch; /* Ocupa a largura toda */
+    gap: 24px;
+    padding: 24px;
+  }
+  
+  .titleContainer {
+    align-items: center; /* Centraliza o "Todo List" e o "Create Task" */
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .logoContainer {
+    /* Esconde o logo grande no mobile para economizar espaço */
+    display: none;
+  }
+  
+  .headerActions {
+    /* Centraliza os botões de Ação */
+    margin-left: 0;
+    justify-content: center;
+  }
+  
+  /* Esconde o texto do botão de tags no mobile, deixa só o ícone */
+  .tagButton span {
+    display: none;
+  }
+  
+  .tagButton {
+    /* Vira um botão-ícone redondo */
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 50%;
+  }
 }
