@@ -24,7 +24,7 @@ Siga os passos abaixo para executar a aplicação em modo de desenvolvimento.
 
 1.  Clone este repositório:
     ```bash
-    git clone [SEU_LINK_DO_GITHUB_AQUI]
+    git clone [https://github.com/Sdbatista/Desafio-Bemol.git]
     ```
 2.  Navegue até a pasta do projeto e instale as dependências:
     ```bash
