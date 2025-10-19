@@ -1,0 +1,10 @@
+/* src/components/KanbanBoard.module.css */
+
+.board {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  min-height: 400px; /* Garante uma altura mínima */
+}

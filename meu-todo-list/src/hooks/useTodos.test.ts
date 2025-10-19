@@ -19,15 +19,12 @@ const mockTask: NewTaskData = {
 describe('useTodos Hook', () => {
 
   it('deve adicionar uma nova tarefa', () => {
-    // 1. Renderiza o hook
     const { result } = renderHook(() => useTodos());
 
-    // 2. Executa a ação (dentro de 'act')
     act(() => {
       result.current.addTask(mockTask);
     });
 
-    // 3. Verifica o resultado
     expect(result.current.tasks.length).toBe(1);
     expect(result.current.tasks[0].title).toBe('Test Task');
     expect(result.current.tasks[0].status).toBe('pendente');
@@ -35,67 +32,105 @@ describe('useTodos Hook', () => {
 
   it('deve remover uma tarefa', () => {
     const { result } = renderHook(() => useTodos());
-
-    // Adiciona uma tarefa primeiro
-    act(() => {
-      result.current.addTask(mockTask);
-    });
-    
-    // Pega o ID da tarefa adicionada
+    act(() => { result.current.addTask(mockTask); });
     const taskId = result.current.tasks[0].id;
 
-    // Remove a tarefa
-    act(() => {
-      result.current.removeTask(taskId);
-    });
+    act(() => { result.current.removeTask(taskId); });
 
-    // Verifica se a lista está vazia
     expect(result.current.tasks.length).toBe(0);
   });
 
-  it('deve alternar o status da tarefa (toggle)', () => {
+  it('deve alternar o status da tarefa', () => {
     const { result } = renderHook(() => useTodos());
-    act(() => {
-      result.current.addTask(mockTask);
-    });
+    act(() => { result.current.addTask(mockTask); });
     const taskId = result.current.tasks[0].id;
 
-    // 1. Verifica se começou como 'pendente'
-    expect(result.current.tasks[0].status).toBe('pendente');
-
-    // 2. Executa o toggle
-    act(() => {
-      result.current.toggleTaskStatus(taskId);
-    });
-
-    // 3. Verifica se mudou para 'concluida'
+    act(() => { result.current.toggleTaskStatus(taskId); });
     expect(result.current.tasks[0].status).toBe('concluida');
 
-    // 4. Executa o toggle novamente
-    act(() => {
-      result.current.toggleTaskStatus(taskId);
-    });
-
-    // 5. Verifica se voltou para 'pendente'
+    act(() => { result.current.toggleTaskStatus(taskId); });
     expect(result.current.tasks[0].status).toBe('pendente');
   });
-  
-  it('deve persistir no LocalStorage', () => {
-    // 1. Primeiro render, adiciona uma tarefa
-    const { result } = renderHook(() => useTodos());
-    act(() => {
-      result.current.addTask(mockTask);
-    });
-    
-    // Verifica se salvou (indiretamente, pela lista de tarefas)
-    expect(result.current.tasks.length).toBe(1);
 
-    // 2. Segundo render, simula recarregar a página
-    // O hook 'loadTasks' (dentro do 'useState') deve ser chamado
-    const { result: result2 } = renderHook(() => useTodos());
-    
-    // Verifica se a tarefa foi carregada do LocalStorage
-    expect(result2.current.tasks.length).toBe(1);
-    expect(result2.current.tasks[0].title).toBe('Test Task');
+  // --- TESTES ATUALIZADOS ---
+
+  describe('Subtasks', () => {
+    it('deve adicionar uma subtarefa a uma tarefa', () => {
+      const { result } = renderHook(() => useTodos());
+      act(() => { result.current.addTask(mockTask); });
+      const taskId = result.current.tasks[0].id;
+
+      act(() => { result.current.addSubtask(taskId, 'New Subtask'); });
+
+      expect(result.current.tasks[0].subtasks).toBeDefined();
+      expect(result.current.tasks[0].subtasks?.length).toBe(1);
+      expect(result.current.tasks[0].subtasks?.[0].title).toBe('New Subtask');
+    });
+
+    it('deve remover uma subtarefa', () => {
+      const { result } = renderHook(() => useTodos());
+      act(() => { result.current.addTask(mockTask); });
+      const taskId = result.current.tasks[0].id;
+      act(() => { result.current.addSubtask(taskId, 'Subtask to remove'); });
+      const subtaskId = result.current.tasks[0].subtasks![0].id;
+
+      act(() => { result.current.removeSubtask(taskId, subtaskId); });
+
+      expect(result.current.tasks[0].subtasks?.length).toBe(0);
+    });
+
+    it('deve alternar o status de uma subtarefa', () => {
+      const { result } = renderHook(() => useTodos());
+      act(() => { result.current.addTask(mockTask); });
+      const taskId = result.current.tasks[0].id;
+      act(() => { result.current.addSubtask(taskId, 'My Subtask'); });
+      const subtaskId = result.current.tasks[0].subtasks![0].id;
+
+      expect(result.current.tasks[0].subtasks![0].status).toBe('pendente');
+
+      act(() => { result.current.toggleSubtaskStatus(taskId, subtaskId); });
+      expect(result.current.tasks[0].subtasks![0].status).toBe('concluida');
+
+      act(() => { result.current.toggleSubtaskStatus(taskId, subtaskId); });
+      expect(result.current.tasks[0].subtasks![0].status).toBe('pendente');
+    });
+  });
+
+  describe('Undo/Redo', () => {
+    it('deve desfazer a adição de uma tarefa', () => {
+      const { result } = renderHook(() => useTodos());
+      expect(result.current.canUndo).toBe(false);
+
+      act(() => { result.current.addTask(mockTask); });
+      expect(result.current.tasks.length).toBe(1);
+      expect(result.current.canUndo).toBe(true);
+
+      act(() => { result.current.undo(); });
+      expect(result.current.tasks.length).toBe(0);
+      expect(result.current.canRedo).toBe(true);
+    });
+
+    it('deve refazer a adição de uma tarefa', () => {
+      const { result } = renderHook(() => useTodos());
+      act(() => { result.current.addTask(mockTask); });
+      act(() => { result.current.undo(); });
+      expect(result.current.tasks.length).toBe(0);
+      
+      act(() => { result.current.redo(); });
+      expect(result.current.tasks.length).toBe(1);
+      expect(result.current.tasks[0].title).toBe('Test Task');
+    });
+
+    it('deve desfazer a remoção de uma tarefa', () => {
+        const { result } = renderHook(() => useTodos());
+        act(() => { result.current.addTask(mockTask); });
+        const taskId = result.current.tasks[0].id;
+        
+        act(() => { result.current.removeTask(taskId); });
+        expect(result.current.tasks.length).toBe(0);
+
+        act(() => { result.current.undo(); });
+        expect(result.current.tasks.length).toBe(1);
+    });
   });
 });

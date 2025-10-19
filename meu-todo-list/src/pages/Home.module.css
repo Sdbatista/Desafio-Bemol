@@ -148,3 +148,62 @@
     border-radius: 50%;
   }
 }
+/* src/pages/Home.module.css */
+
+/* Adicione no final do arquivo */
+.actionButton {
+  background-color: var(--color-secondary-btn);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover:not(:disabled) {
+  background-color: var(--color-secondary-btn-hover);
+  box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tasksTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap; /* Para telas menores */
+}
+
+.viewToggle {
+  display: flex;
+  background-color: var(--color-secondary-btn);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.viewToggle button {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.viewToggle button.active {
+  background-color: var(--color-card-bg);
+  color: var(--color-primary);
+  box-shadow: 0 1px 3px var(--color-shadow);
+}
